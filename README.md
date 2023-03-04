@@ -2,6 +2,8 @@
 
 Play part of Youtube video.
 
+![Demo](https://raw.githubusercontent.com/namngh/assets/main/repeat-youtube-extension/repeat-youtube.gif)
+
 ## Contributing
 
 Pull requests are welcome. For major changes,
