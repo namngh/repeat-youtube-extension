@@ -12,7 +12,19 @@ chrome.storage.local.get(["time"]).then((result) => {
 
 applyBtn.onclick = async () => {
     const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-    const time = { startAt: parseTime(startAt.value), endAt: parseTime(endAt.value) }
+    const startAtTime = parseTime(startAt.value)
+    const endAtTime = parseTime(endAt.value)
+
+    if (!startAt || !endAt) {
+        return;
+    }
+
+    if (startAt > endAt) {
+        invalidTimeOrderError()
+        return;
+    }
+
+    const time = { startAt: startAtTime, endAt: endAtTime }
 
     chrome.storage.local.set({ time: { startAt: startAt.value, endAt: endAt.value } }).then(() => { });
 
@@ -57,4 +69,8 @@ const isInteger = (str) => {
 
 const invalidFormatError = () => {
     alert("Wrong time format, use: HH:mm Ex: 12:10")
+}
+
+const invalidTimeOrderError = () => {
+    alert("Start at time is greater than end at")
 }
