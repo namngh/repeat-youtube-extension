@@ -44,6 +44,13 @@ const parseTime = (time) => {
 }
 
 const isInteger = (str) => {
+    str = str.trim()
+    if (!str) {
+        return false
+    }
+
+    str = str.replace(/^0+/, "") || "0";
+
     const int = Math.floor(Number(str));
     return int !== Infinity && String(int) === str
 }
